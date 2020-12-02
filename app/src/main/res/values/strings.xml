@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Coviot</string>
+    <string name="chat_fragment">Chat fragment</string>
+    <string name="coviot">Coviot</string>
+    <string name="send_button">Send Button</string>
+    <string name="enter_message">Enter message</string>
 </resources>
