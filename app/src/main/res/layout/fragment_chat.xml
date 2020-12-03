@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -11,59 +12,70 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/message_list"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            android:paddingBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginBottom="0dp"
-            android:background="#dfdfdf"
-            app:color="@color/purple_200"
-            app:layout_constraintBottom_toTopOf="@+id/layout_chatbox"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
-
         <LinearLayout
-            android:id="@+id/layout_chatbox"
-            android:layout_width="0dp"
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#ffffff"
-            android:minHeight="48dp"
-            android:orientation="horizontal"
-            android:padding="4dp"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0">
 
-            <EditText
-                android:id="@+id/chatbox"
-                android:layout_width="0dp"
-                android:layout_height="45dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:hint="@string/enter_message"
-                android:textSize="16sp"
-                android:maxLines="6"
-                android:textColorHint="@color/purple_100"
-                android:inputType="textPersonName" />
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#dfdfdf"
+                app:color="@color/purple_200" />
 
-            <ImageButton
-                android:id="@+id/sendButton"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="0.1"
-                android:background="@drawable/rounded_purple"
-                android:contentDescription="@string/send_button"
-                android:src="@android:drawable/ic_menu_send" />
+            <LinearLayout
+                android:id="@+id/layout_chatbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:minHeight="48dp"
+                android:orientation="horizontal"
+                android:padding="4dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent">
 
+                <EditText
+                    android:id="@+id/chatbox"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/enter_message"
+                    android:inputType="textPersonName"
+                    android:maxLines="6"
+                    android:textColorHint="@color/purple_100"
+                    android:textSize="16sp" />
+
+                <ImageButton
+                    android:id="@+id/sendButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.1"
+                    android:background="@drawable/rounded_purple"
+                    android:contentDescription="@string/send_button"
+                    android:src="@android:drawable/ic_menu_send" />
+
+            </LinearLayout>
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

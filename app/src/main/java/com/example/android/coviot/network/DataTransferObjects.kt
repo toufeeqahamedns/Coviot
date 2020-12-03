@@ -1,11 +1,10 @@
 package com.example.android.coviot.network
 
 import com.example.android.coviot.database.CoviotEntity
-import com.example.android.coviot.domain.CoviotData
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class NetworkCoviotContainer(val Countries: List<NetworkCoviot>, val Global: NetworkCoviot)
+data class NetworkCoviotContainer(val Countries: List<NetworkCoviot>?, val Global: NetworkCoviot?)
 
 @JsonClass(generateAdapter = true)
 data class NetworkCoviot(
@@ -20,24 +19,8 @@ data class NetworkCoviot(
     val Date: String? = System.currentTimeMillis().toString(),
 )
 
-fun NetworkCoviotContainer.asDomainModel(): List<CoviotData> {
-    return Countries.map {
-        CoviotData(
-            countryCode = it.CountryCode!!,
-            country = it.Country!!,
-            newConfirmed = it.NewConfirmed,
-            totalConfirmed = it.TotalConfirmed,
-            newDeaths = it.NewDeaths,
-            totalDeaths = it.TotalDeaths,
-            newRecovered = it.NewRecovered,
-            totalRecovered = it.TotalRecovered,
-            date = it.Date!!,
-        )
-    }
-}
-
 fun NetworkCoviotContainer.countryAsDatabaseModel(): Array<CoviotEntity> {
-    return Countries.map {
+    return Countries?.map {
         CoviotEntity(
             countryCode = it.CountryCode!!,
             country = it.Country!!,
@@ -49,13 +32,13 @@ fun NetworkCoviotContainer.countryAsDatabaseModel(): Array<CoviotEntity> {
             totalRecovered = it.TotalRecovered,
             date = it.Date!!,
         )
-    }.toTypedArray()
+    }!!.toTypedArray()
 }
 
 fun NetworkCoviotContainer.globalAsDatabaseModel(): Array<CoviotEntity> {
     return arrayOf(
         CoviotEntity(
-            countryCode = Global.CountryCode!!,
+            countryCode = Global?.CountryCode!!,
             country = Global.Country!!,
             newConfirmed = Global.NewConfirmed,
             totalConfirmed = Global.TotalConfirmed,

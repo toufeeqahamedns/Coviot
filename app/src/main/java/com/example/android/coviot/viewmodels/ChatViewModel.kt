@@ -2,6 +2,8 @@ package com.example.android.coviot.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.android.coviot.database.getDatabase
 import com.example.android.coviot.repository.CoviotRepository
@@ -9,7 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class ChatViewModel(application: Application): AndroidViewModel(application){
+class ChatViewModel(application: Application) : AndroidViewModel(application) {
 
     private val database = getDatabase(application)
 
@@ -21,12 +23,46 @@ class ChatViewModel(application: Application): AndroidViewModel(application){
         }
     }
 
-    fun query() {
+    val chats = coviotRepository.chats
+
+    fun sendMessage(message: String) {
         viewModelScope.launch {
-            withContext(Dispatchers.IO) {
-                val res = database.coviotDao.getCoviot("IN")
-                println(res[0].newConfirmed)
+            coviotRepository.sendMessage(message, "user")
+        }
+        sortMessageToQuery(message)
+    }
+
+    fun welcomeMessage() {
+        viewModelScope.launch {
+            coviotRepository.sendMessage("Hello, this is Coviot, I can help you with Covid-19 stats, feel free to ask some questions", "bot")
+        }
+    }
+
+    private fun sortMessageToQuery(msg: String) {
+        with(msg.toUpperCase()) {
+            when {
+                contains("CASE") -> when {
+                    contains("TOTAL") -> fetchWithReply("Total Active Cases ", "GLOBAL")
+                    else -> fetchWithReply(takeLast(2) + " Active Cases ", takeLast(2))
+                }
+                contains("DEATH") -> when {
+                    contains("TOTAL") -> fetchWithReply("Total Deaths ", "GLOBAL")
+                    else -> fetchWithReply(takeLast(2) + " Deaths ", takeLast(2))
+                }
+                else -> sendSorryMessage()
             }
+        }
+    }
+
+    private fun fetchWithReply(replyMsg: String, queryParam: String) {
+        viewModelScope.launch {
+            coviotRepository.replyAs(replyMsg, queryParam)
+        }
+    }
+
+    private fun sendSorryMessage() {
+        viewModelScope.launch {
+            coviotRepository.sendMessage("Sorry, I cant help you with that!!!", "bot")
         }
     }
 }
