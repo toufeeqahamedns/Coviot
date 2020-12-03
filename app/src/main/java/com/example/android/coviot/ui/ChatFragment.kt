@@ -51,7 +51,7 @@ class ChatFragment : Fragment() {
 
         viewModel = ViewModelProvider(this, viewModelFactory).get(ChatViewModel::class.java)
 
-        chatAdapter = ChatAdapter(viewModel)
+        chatAdapter = ChatAdapter()
 
         messageList.apply {
             layoutManager = LinearLayoutManager(context).also { it.stackFromEnd = true }

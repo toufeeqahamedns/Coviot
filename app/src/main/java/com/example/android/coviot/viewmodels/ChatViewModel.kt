@@ -43,11 +43,11 @@ class ChatViewModel(application: Application) : AndroidViewModel(application) {
             when {
                 contains("CASE") -> when {
                     contains("TOTAL") -> fetchWithReply("Total Active Cases ", "GLOBAL")
-                    else -> fetchWithReply(takeLast(2) + " Active Cases ", takeLast(2))
+                    else -> fetchWithReply(takeLast(3) + " Active Cases ", takeLast(3).trim())
                 }
                 contains("DEATH") -> when {
                     contains("TOTAL") -> fetchWithReply("Total Deaths ", "GLOBAL")
-                    else -> fetchWithReply(takeLast(2) + " Deaths ", takeLast(2))
+                    else -> fetchWithReply(takeLast(3) + " Deaths ", takeLast(3).trim())
                 }
                 else -> sendSorryMessage()
             }

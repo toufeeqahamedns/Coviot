@@ -23,8 +23,10 @@ class CoviotRepository(private val database: CoviotDatabse) {
     suspend fun refreshCoviot() {
         withContext(Dispatchers.IO) {
             val coviotData = Network.coviots.getCoviotsAsync().await()
-            database.coviotDao.insertAll(*coviotData.countryAsDatabaseModel())
-            database.coviotDao.insertAll(*coviotData.globalAsDatabaseModel())
+            if (coviotData.Message.isEmpty()) {
+                database.coviotDao.insertAll(*coviotData.countryAsDatabaseModel())
+                database.coviotDao.insertAll(*coviotData.globalAsDatabaseModel())
+            }
         }
     }
 

@@ -20,7 +20,7 @@ import kotlinx.coroutines.withContext
 private const val ITEM_VIEW_TYPE_BOT = 0
 private const val ITEM_VIEW_TYPE_USER = 1
 
-class ChatAdapter(val viewModel: ChatViewModel) : ListAdapter<DataItem, RecyclerView.ViewHolder>(ChatDiffCallback()) {
+class ChatAdapter : ListAdapter<DataItem, RecyclerView.ViewHolder>(ChatDiffCallback()) {
 
     private val adapterScope = CoroutineScope(Dispatchers.Default)
 
@@ -34,7 +34,6 @@ class ChatAdapter(val viewModel: ChatViewModel) : ListAdapter<DataItem, Recycler
                 submitList(items)
             }
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {

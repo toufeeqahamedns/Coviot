@@ -4,7 +4,7 @@ import com.example.android.coviot.database.CoviotEntity
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class NetworkCoviotContainer(val Countries: List<NetworkCoviot>?, val Global: NetworkCoviot?)
+data class NetworkCoviotContainer(val Message: String, val Countries: List<NetworkCoviot>?, val Global: NetworkCoviot?)
 
 @JsonClass(generateAdapter = true)
 data class NetworkCoviot(
