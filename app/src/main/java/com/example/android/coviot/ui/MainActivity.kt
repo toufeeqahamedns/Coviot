@@ -1,7 +1,8 @@
-package com.example.android.coviot
+package com.example.android.coviot.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.android.coviot.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

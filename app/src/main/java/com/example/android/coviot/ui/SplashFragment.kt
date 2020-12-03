@@ -1,4 +1,4 @@
-package com.example.android.coviot
+package com.example.android.coviot.ui
 
 import android.os.Bundle
 import android.os.Handler
@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import com.example.android.coviot.R
 import com.example.android.coviot.databinding.FragmentSplashBinding
 
 

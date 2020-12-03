@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.example.android.coviot.SplashFragment"
+        android:name="com.example.android.coviot.ui.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" >
         <action
@@ -22,7 +22,7 @@
     </fragment>
     <fragment
         android:id="@+id/chatFragment"
-        android:name="com.example.android.coviot.ChatFragment"
+        android:name="com.example.android.coviot.ui.ChatFragment"
         android:label="fragment_chat"
         tools:layout="@layout/fragment_chat" />
 
